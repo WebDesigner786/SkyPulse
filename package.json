@@ -1,0 +1,17 @@
+{
+  "name": "saas",
+  "version": "1.0.0",
+  "description": "SkyPulse - Modern Weather SaaS Application",
+  "type": "module",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "next": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "typescript": "^5.6.0"
+  }
+}
