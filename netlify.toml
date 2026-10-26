@@ -1,0 +1,53 @@
+/*
+  SkyPulse - Netlify Deployment Configuration
+  This file configures the build for Netlify deployment
+*/
+
+/* netlify.toml - Root configuration for Netlify */
+export const meta = {
+  name: 'netlify-config',
+  description: 'SkyPulse Weather SaaS Netlify configuration',
+}
+
+/* Netlify TOML config */
+export const config = {
+  /* Build settings */
+  build: {
+    /* Next.js build command */
+    command: 'npm run build',
+
+    /* Publish directory - Next.js app router outputs to .next */
+    publish: '.next',
+
+    /* Functions directory if using serverless functions */
+    /* functions: 'api', */
+
+    /* Branch deploys */
+    /* deploy settings */
+  },
+
+  /* Redirects for SPA routing (if needed) */
+  redirects: {
+    /* Fallback for client-side routing */
+    /* from: '/*', to: '/index.html', status: 200, condition: '?/*' */
+  },
+
+  /* Environment variables */
+  env: {
+    /* Add your environment variables here */
+    /* API_URL: 'https://api.open-meteo.com/v1/forecast' */
+  },
+
+  /* Plugins */
+  plugins: [],
+
+  /* Cache settings */
+  cache: {
+    /* Enable HTTP cache */
+    headers: {
+      /* '/*': {
+      • 'Cache-Control': 'public, max-age=0, must-revalidate'
+      } */
+    },
+  },
+}
