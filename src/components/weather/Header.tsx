@@ -1,20 +1,10 @@
 /*
-  SkyPulse - Weather SaaS Application
-  File: /components/weather/Header.tsx
-  Description: Header component with search bar, location selector, and unit toggle
+  SkyPulse - Header Component
+  Header component with search bar, location selector, and unit toggle
 */
 
 import { useState, useEffect } from "react";
-import { useDebouncedSearch } from "@/hooks/useWeather";
-import {
-  Search,
-  LocationPin,
-  Sun,
-  MoonStars,
-  Settings,
-  ChevronDown,
-  X
-} from "lucide-react";
+import { Search, LocationPin, Sun, MoonStars, Settings, ChevronDown, X } from "lucide-react";
 
 type WeatherUnit = "celsius" | "fahrenheit";
 
@@ -42,7 +32,8 @@ export const Header: React.FC<HeaderProps> = ({
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value.trim();
     setSearchQuery(value);
-    onRecentSearchSelect?.(value); // Track search history
+    updateDebouncedSearch(value); // Track search history
+    onRecentSearchSelect?.(value);
   };
 
   // Handle search submit (enter key or search button)
@@ -109,7 +100,7 @@ export const Header: React.FC<HeaderProps> = ({
                     handleSearchSubmit();
                   }
                 }}
-                className={`w-full pl-10 pr-4 py-2 rounded-full border border-border/40 bg-transparent focus:outline-none focus:ring-2 focus:ring-[var(--primary)] transition-colors placeholder-gray-400/50 ${
+                className={`w-full pl-10 pr-4 py-2 rounded-full border border-border/40 bg-transparent focus:outline-none focus:ring-2 focus-ring-[var(--primary)] transition-colors placeholder-gray-400/50 ${
                   isSearchOpen ? "bg-[var(--card)]" : "bg-transparent"
                 }`}
                 aria-label="Search city or location"
@@ -157,4 +148,29 @@ export const Header: React.FC<HeaderProps> = ({
       </div>
     </header>
   );
+};
+
+// Debounced search hook would be imported from useWeather
+// For this component, we define a local version
+const useDebouncedSearch = <T>(
+  value: T,
+  delay: number = 300
+): [T, (value: T) => void] => {
+  const [debouncedValue, setDebouncedValue] = useState<T>(value);
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedValue(value);
+    }, delay);
+
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [value, delay]);
+
+  const updateValue = useCallback((newValue: T) => {
+    setDebouncedValue(newValue);
+  }, []);
+
+  return [debouncedValue, updateValue];
 };

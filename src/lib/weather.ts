@@ -1,7 +1,6 @@
 /*
-  SkyPulse - Weather SaaS Application
-  File: /lib/weather.ts
-  Description: API layer for weather data fetching with Open-Meteo integration
+  SkyPulse - Weather Types and API Integration
+  API layer for weather data fetching with Open-Meteo integration
 */
 
 export type WeatherCondition =
@@ -11,7 +10,6 @@ export type WeatherCondition =
   | "partly-cloudy-night"
   | "rain"
   | "snow"
-  | "sleet"
   | "wind"
   | "fog"
   | "cloudy"
@@ -50,9 +48,7 @@ export type CurrentWeather = {
 export type HourlyForecast = {
   time: string;
   temperature: number;
-  temperature_2m?: number;
   precipitation_probability: number;
-  precipitation?: number;
   condition: WeatherCondition;
   icon: string;
 };
@@ -63,7 +59,6 @@ export type DailyForecast = {
   date: string;
   temperature_max: number;
   temperature_min: number;
-  temperature_mean?: number;
   precipitation_probability_max: number;
   condition: WeatherCondition;
   icon: string;
@@ -80,15 +75,6 @@ export type WeatherAlert = {
   start_time: string;
   end_time: string;
   area?: string;
-};
-
-// Weather metrics grid items
-export type WeatherMetrics = {
-  label: string;
-  value: string | number;
-  unit: string;
-  trend?: "up" | "down" | "neutral";
-  icon?: string;
 };
 
 // Forecast response from Open-Meteo
@@ -122,10 +108,10 @@ export const convertTemperature = (
 ): number => {
   if (from === to) return value;
   if (from === "celsius" && to === "fahrenheit") {
-    return (value * 9/5) + 32;
+    return (value * 9 / 5) + 32;
   }
   if (from === "fahrenheit" && to === "celsius") {
-    return (value - 32) * 5/9;
+    return (value - 32) * 5 / 9;
   }
   return value;
 };
@@ -157,7 +143,6 @@ export const getWeatherIcon = (condition: WeatherCondition): string => {
     "partly-cloudy-night": "cloud-moon",
     "rain": "cloud-rain",
     "snow": "snowflake",
-    "sleet": "cloud-rain",
     "wind": "wind",
     "fog": "cloud-fog",
     "cloudy": "cloud",

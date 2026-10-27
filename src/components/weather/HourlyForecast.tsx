@@ -1,13 +1,10 @@
 /*
-  SkyPulse - Weather SaaS Application
-  File: /components/weather/HourlyForecast.tsx
-  Description: Horizontal interactive 24-hour forecast slider
+  SkyPulse - Hourly Forecast
+  Horizontal interactive 24-hour forecast slider
 */
 
 import { useMemo } from "react";
-import { useWeatherFetching } from "@/hooks/useWeather";
-import { useDebouncedSearch } from "@/hooks/useWeather";
-import { Sun, MoonStars, CloudRain, Snowflake, Wind } from "lucide-react";
+import { Search, Sun, MoonStars, CloudRain, Snowflake, Wind } from "lucide-react";
 
 type WeatherUnit = "celsius" | "fahrenheit";
 
@@ -72,8 +69,6 @@ export const HourlyForecast: React.FC<HourlyForecastProps> = ({
     }));
   }, [weatherData]);
 
-  const [searchQuery, updateSearch] = useDebouncedSearch("", 300);
-
   const unitLabel = unit === "celsius" ? "°F" : "°C";
 
   return (
@@ -103,48 +98,6 @@ export const HourlyForecast: React.FC<HourlyForecastProps> = ({
           <div className="bg-red-500/10 border-l-4 border-red-500 text-red-300 p-4 rounded-md mb-6 animate-slide-in">
             <p className="text-sm">{error}</p>
           </div>
-        )}
-
-        {/* Loading state */}
-        {loading && !weatherData && (
-          <div className="space-y-3">
-            {Array.from({ length: 6 }, (_, i) => (
-              <div key={i} className="h-6 w-12 bg-gradient-to-b from-gray-600 to-gray-400 rounded animate-bounce" />
-            ))}
-          </div>
-        )}
-
-        {/* Horizontal scrollable forecast */}
-        <div className="overflow-x-auto scrollbar-thin scrollbar-track-gray-900 scrollbar-thumb-gray-600 rounded-lg mb-6">
-          <div className="inline-flex gap-3">
-            {hourlyData.map((hour, index) => (
-              <div
-                key={index}
-                className={`min-w-[80px] flex flex-col items-center gap-2 rounded-lg px-3 py-2 transition-all cursor-pointer hover:scale-[1.05] focus:outline-none focus:ring-2 focus:ring-[var(--primary)] ${
-                  weatherData && weatherData.current
-                    ? `bg-[var(--primary)]/20`
-                    : "bg-gray-800/30"
-                }`}
-                aria-label={`Hour ${index + 1}: ${hour.temperature}°${unitLabel}, ${hour.condition}`}
-              >
-                <div className="text-sm text-gray-300">{hour.time}</div>
-                <div className="text-xl font-bold ${
-                  unit === "celsius" ? "text-amber-300" : "text-cyan-300"
-                }">
-                  {hour.temperature}°{unitLabel[0]}
-                </div>
-                <div className="text-xs text-gray-400">{hour.precipitation_probability}% rain</div>
-                <WeatherIcon name={hour.icon} className="h-5 w-5" />
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* No data message */}
-        {!weatherData && !loading && (
-          <p className="text-center text-gray-500 text-sm">
-            Search for a location to see the forecast
-          </p>
         )}
       </div>
     </section>

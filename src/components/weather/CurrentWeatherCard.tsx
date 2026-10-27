@@ -1,13 +1,13 @@
 /*
-  SkyPulse - Weather SaaS Application
-  File: /components/weather/CurrentWeatherCard.tsx
-  Description: Primary hero card with current weather conditions and dynamic background styling
+  SkyPulse - Current Weather Card
+  Primary hero card with current weather conditions and dynamic background styling
 */
 
 import { useState } from "react";
 import { Sun, MoonStars, CloudRain, Snowflake, Wind, Sunrise, Sunset } from "lucide-react";
 
 type WeatherUnit = "celsius" | "fahrenheit";
+
 type WeatherCondition = string;
 
 interface CurrentWeatherCardProps {
@@ -83,11 +83,11 @@ export const CurrentWeatherCard: React.FC<CurrentWeatherCardProps> = ({
   const [isFahrenheit, setIsFahrenheit] = useState(unit === "fahrenheit");
 
   const tempDisplay = isFahrenheit
-    ? Math.round(weather.temperature * 9/5 + 32)
+    ? Math.round(weather.temperature * 9 / 5 + 32)
     : Math.round(weather.temperature);
 
   const feelsLikeDisplay = isFahrenheit
-    ? Math.round(weather.feels_like * 9/5 + 32)
+    ? Math.round(weather.feels_like * 9 / 5 + 32)
     : Math.round(weather.feels_like);
 
   // Determine day/night based on time
@@ -153,7 +153,7 @@ export const CurrentWeatherCard: React.FC<CurrentWeatherCardProps> = ({
                 ? "bg-indigo-950/40 text-indigo-400"
                 : "bg-amber-950/30 text-amber-400"
             }">
-              <weatherIcon
+              <WeatherIcon
                 name={weather.icon}
                 size={60}
                 className={textColor}

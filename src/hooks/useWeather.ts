@@ -1,14 +1,11 @@
 /*
-  SkyPulse - Weather SaaS Application
-  File: /hooks/useWeather.ts
-  Description: Custom React hooks for weather data, geolocation, and search management
+  SkyPulse - Custom React Hooks for Weather
+  Hooks for weather data fetching, geolocation, and search management
 */
 
 import { useEffect, useState, useCallback } from "react";
 
-// Types import would be from ../lib/weather
-// For now, redefining minimal types inline
-
+// Types
 type WeatherUnit = "celsius" | "fahrenheit";
 
 type LocationResult = {
@@ -17,38 +14,6 @@ type LocationResult = {
   lon: number;
   country: string;
   state: string | null;
-};
-
-type CurrentWeather = {
-  temperature: number;
-  feels_like: number;
-  humidity: number;
-  wind_speed: number;
-  wind_direction: number;
-  pressure: number;
-  visibility: number;
-  uv_index: number;
-  condition: string;
-  description: string;
-  icon: string;
-};
-
-type HourlyForecast = {
-  time: string;
-  temperature: number;
-  precipitation_probability: number;
-  condition: string;
-  icon: string;
-};
-
-type DailyForecast = {
-  day: string;
-  date: string;
-  temperature_max: number;
-  temperature_min: number;
-  precipitation_probability_max: number;
-  condition: string;
-  icon: string;
 };
 
 // Hook 1: Geolocation detection

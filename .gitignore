@@ -14,9 +14,6 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# Cloudcover
-.cloudcover/
-
 # TypeScript
 *.tsbuildinfo
 *.tsbuildinfo.bak
@@ -37,18 +34,6 @@ yarn-error.log*
 .env*
 .local*
 
-# Vercel Insights
-@vercel-insights/
-
-# Next.js specific
-/out/
-
-# Storybook
-/.storybook-static
-
-# ESLint
-.eslintcache
-
 # Docker
 Dockerfile*
 
@@ -67,9 +52,6 @@ Dockerfile*
 # Astro
 /.cache/
 
-# Eleventy
-/.cache/
-
 # Hugo
 ./public/
 
@@ -80,7 +62,7 @@ Dockerfile*
 
 node_modules
 .next
-out
+.out
 *.local
 npm-debug.log*
 yarn-debug.log*

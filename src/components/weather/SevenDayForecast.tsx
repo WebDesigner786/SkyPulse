@@ -1,7 +1,6 @@
 /*
-  SkyPulse - Weather SaaS Application
-  File: /components/weather/SevenDayForecast.tsx
-  Description: 7-day extended forecast with daily cards and mini charts
+  SkyPulse - 7-Day Forecast
+  7-day extended forecast with daily cards and mini charts
 */
 
 import { useWeatherFetching } from "@/hooks/useWeather";
@@ -45,16 +44,6 @@ export const SevenDayForecast: React.FC<SevenDayForecastProps> = ({
           <h2 className="text-xl font-semibold text-white">
             7-Day Forecast
           </h2>
-          {weatherData && weatherData.daily?.length > 0 && (
-            <button
-              onClick={() => window.open(`/weather/forecast?unit=${unit}`)}
-              className={`flex items-center gap-2 rounded-lg px-3 py-1.5 transition-colors text-sm text-gray-400 hover:text-white`
-                }
-              aria-label="View detailed forecast"
-            >
-              See all days
-            </button>
-          )}
         </div>
 
         {/* Error state */}
@@ -172,6 +161,7 @@ const WeatherIcon: React.FC<{
     "default": <Sun className={className} />,
   };
   return iconMap[name] || iconMap.default;
+
 };
 
 WeatherIcon.displayName = "WeatherIcon";

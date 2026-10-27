@@ -1,7 +1,6 @@
 /*
-  SkyPulse - Weather SaaS Application
-  File: /components/weather/WeatherMetricsGrid.tsx
-  Description: Grid of weather metrics widgets (AQI, UV, Wind, Humidity, Pressure)
+  SkyPulse - Weather Metrics Grid
+  Grid of weather metrics widgets (AQI, UV, Wind, Humidity, Pressure)
 */
 
 import { useWeatherFetching } from "@/hooks/useWeather";

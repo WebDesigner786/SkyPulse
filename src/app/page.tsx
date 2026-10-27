@@ -1,8 +1,10 @@
 /*
-  SkyPulse - Weather SaaS Application
+  SkyPulse - Main Dashboard Page
   File: /app/page.tsx
   Description: Main dashboard page assembling all weather components
 */
+
+"use client";
 
 import { useState, useEffect } from "react";
 import { useGeolocation } from "@/hooks/useWeather";
@@ -11,6 +13,7 @@ import { CurrentWeatherCard } from "@/components/weather/CurrentWeatherCard";
 import { HourlyForecast } from "@/components/weather/HourlyForecast";
 import { SevenDayForecast } from "@/components/weather/SevenDayForecast";
 import { WeatherMetricsGrid } from "@/components/weather/WeatherMetricsGrid";
+import { convertTemperature, getUnitLabel } from "@/lib/weather";
 
 type WeatherUnit = "celsius" | "fahrenheit";
 

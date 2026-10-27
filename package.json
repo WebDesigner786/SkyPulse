@@ -1,5 +1,5 @@
 {
-  "name": "saas",
+  "name": "skypulse",
   "version": "1.0.0",
   "description": "SkyPulse - Modern Weather SaaS Application",
   "type": "module",
@@ -9,9 +9,21 @@
     "start": "next start"
   },
   "dependencies": {
-    "next": "latest",
-    "react": "latest",
-    "react-dom": "latest",
-    "typescript": "^5.6.0"
+    "next": "14.2.4",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "typescript": "^5.6.0",
+    "lucide-react": "^0.453.0",
+    "tailwindcss": "^3.4.1",
+    "postcss": "^8.4.31",
+    "autoprefixer": "^10.4.15"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "@types/react": "^18.2.43",
+    "@types/react-dom": "^18.2.17",
+    "eslint": "^8.57.0",
+    "eslint-config-next": "^14.2.4",
+    "daisyui": "^4.12.14"
   }
 }
